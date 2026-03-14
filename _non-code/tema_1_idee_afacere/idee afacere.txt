@@ -1,0 +1,607 @@
+Tip prompt:
+Meta Prompt + Chain-of-Thought
+
+Titlu: Chatbot generic AI pentru Support Center
+
+Prommpt:
+-------------------------------------------------------------------------------
+Rol: Ești un expert în startup-uri AI și arhitectură de sisteme bazate pe LLM.
+
+Sarcină:
+Analizează și dezvoltă următoarea idee de afacere:
+
+"Idee: chatbot AI generic pentru Support Center, care poate fi specializat pe baza de skilluri pentru diferite industrii (e-commerce, telecom, banking etc.) și care poate memora istoricul fiecărui client, inclusiv problemele anterioare și soluțiile oferite. Acorda importanta notiunii de generic, pentru ca specializarea pe industrie (e-commerce, aviatie) se va face cu fisiere md de skilluri specifice si exhaustive. 
+
+Instrucțiuni:
+1. Analizează problema pe care o rezolvă acest produs.
+2. Descrie cum ar funcționa chatbotul din punct de vedere tehnic.
+3. Explică cum pot fi implementate skillurile specializate.
+4. Explică cum poate fi implementată memoria clienților (customer memory).
+5. Propune funcționalitățile principale ale produsului.
+6. Sugerează un model de business și monetizare.
+
+Formatul răspunsului:
+
+1. Problema rezolvată
+2. Soluția propusă
+3. Arhitectura tehnică
+4. Sistemul de skilluri
+5. Memoria clienților
+6. Funcționalități cheie
+7. Model de business
+8. Avantaje competitive
+9. Posibile riscuri
+
+
+===================
+
+Raspuns ChatGpt 5.2
+----------------------------------------------------
+1. Problema rezolvată
+
+Majoritatea companiilor au Support Center-uri costisitoare și ineficiente, cu câteva probleme majore:
+
+1. Costuri operaționale mari
+
+agenți umani scumpi
+
+training constant
+
+rotație mare de personal
+
+2. Knowledge fragmentation
+
+Informația este răspândită în:
+
+documentație
+
+wiki intern
+
+CRM
+
+emailuri
+
+SOP-uri
+
+Rezultatul: agenții nu găsesc rapid răspunsurile corecte.
+
+3. Chatboți existenți sunt slabi
+
+Majoritatea sunt:
+
+rule-based
+
+FAQ search
+
+sau LLM-uri fără memorie
+
+Probleme:
+
+nu înțeleg contextul
+
+nu țin minte clientul
+
+nu oferă rezoluții complete
+
+4. Lipsa memoriei istorice a clientului
+
+De fiecare dată clientul trebuie să repete:
+
+problema
+
+produsul
+
+istoricul
+
+Aceasta produce frustrare și timp pierdut.
+
+5. Dificultate în adaptarea la industrie
+
+Fiecare industrie are:
+
+reguli
+
+procese
+
+termeni
+
+Exemple:
+
+e-commerce → retururi
+
+telecom → abonamente
+
+banking → KYC / securitate
+
+Un chatbot generic nu știe aceste procese.
+
+2. Soluția propusă
+
+Un AI Support Platform compus din:
+
+1️⃣ Core chatbot generic
+
+Un LLM orchestrat care știe:
+
+conversație naturală
+
+rezolvare de probleme
+
+workflow support
+
+Acesta este agnostic de industrie.
+
+2️⃣ Skill system
+
+Specializarea se face prin:
+
+skill packs (.md files)
+
+care conțin:
+
+procese
+
+reguli
+
+fluxuri
+
+knowledge
+
+Exemple:
+
+skills/
+   ecommerce/
+      returns.md
+      refunds.md
+      shipping.md
+
+   telecom/
+      subscriptions.md
+      billing.md
+      sim_activation.md
+3️⃣ Customer Memory System
+
+Un sistem care reține:
+
+istoricul clientului
+
+probleme anterioare
+
+produse cumpărate
+
+soluții oferite
+
+Chatbotul poate spune:
+
+"Ultima dată ai avut o problemă cu livrarea comenzii #34892. Vrei să verificăm dacă s-a rezolvat?"
+
+4️⃣ Orchestrator AI
+
+Un layer inteligent care decide:
+
+ce skill folosește
+
+ce memorie recuperează
+
+ce tool execută
+
+3. Arhitectura tehnică
+High-level architecture
+User
+ ↓
+Chat Interface
+ ↓
+Conversation Orchestrator
+ ↓
+LLM Core
+ ↓
+Context Builder
+ ↓
+--------------------------------
+|  Skill System (Markdown)     |
+|  Customer Memory Store       |
+|  Knowledge Base (RAG)        |
+|  External APIs               |
+--------------------------------
+ ↓
+Response Generator
+ ↓
+User
+Componente principale
+1. LLM Core
+
+Modele posibile:
+
+GPT
+
+Claude
+
+Mistral
+
+Llama
+
+Responsabil pentru:
+
+interpretare
+
+reasoning
+
+generare răspuns
+
+2. Context Builder
+
+Construiește promptul din:
+
+SYSTEM PROMPT
++
+SKILLS
++
+CUSTOMER MEMORY
++
+KNOWLEDGE BASE
++
+CURRENT CONVERSATION
+3. RAG System
+
+Documente:
+
+help center
+
+manuale
+
+policies
+
+Indexare:
+
+vector DB
+
+ex:
+
+Pinecone
+
+Weaviate
+
+Qdrant
+
+4. Tool Layer
+
+Chatbotul poate executa:
+
+refund
+
+check order
+
+change subscription
+
+reset password
+
+prin API-uri interne.
+
+4. Sistemul de skilluri
+
+Skillurile sunt module de comportament AI.
+
+Format: .md
+
+Exemplu:
+
+# Skill: Product Returns
+
+## Description
+Handle product return requests for e-commerce customers.
+
+## Steps
+
+1. Verify order number
+2. Check return eligibility (30 days)
+3. Ask reason
+4. Offer refund or replacement
+
+## Policies
+
+- Electronics: 14 days
+- Clothing: 30 days
+
+## Tone
+Helpful and solution-oriented
+Cum sunt folosite
+
+Orchestratorul detectează:
+
+intent: return product
+
+și încarcă:
+
+returns.md
+Avantaj major
+
+Skillurile pot fi:
+
+editate ușor
+
+versionate
+
+create de non-programatori
+
+Skill layering
+GLOBAL SKILLS
+↓
+INDUSTRY SKILLS
+↓
+COMPANY SKILLS
+
+Ex:
+
+global/
+   customer_empathy.md
+
+industry/
+   ecommerce_returns.md
+
+company/
+   amazon_return_policy.md
+5. Memoria clienților
+
+Customer memory este esențială pentru suport real.
+
+Tipuri de memorie
+1️⃣ Profile memory
+
+Date persistente:
+
+customer_id
+name
+email
+language
+loyalty_status
+2️⃣ Interaction memory
+
+Evenimente:
+
+ticket_opened
+refund_issued
+complaint
+3️⃣ Problem memory
+
+Probleme anterioare:
+
+problem: late delivery
+solution: refund 10%
+status: resolved
+4️⃣ Preference memory
+
+Preferințe:
+
+prefers chat
+hates phone calls
+VIP customer
+Implementare
+
+Storage:
+
+Postgres / DynamoDB
++
+Vector DB
+Retrieval
+
+La fiecare conversație:
+
+fetch customer memory
+summarize
+inject in prompt
+
+Exemplu:
+
+Customer summary:
+- VIP customer
+- 3 orders last month
+- Previous issue: delayed shipping
+6. Funcționalități cheie
+1️⃣ Conversational Support AI
+
+Chat natural cu clientul.
+
+2️⃣ Automatic Ticket Resolution
+
+AI poate:
+
+rezolva
+
+executa acțiuni
+
+escalada
+
+3️⃣ AI Agent Assist
+
+Pentru agenți umani:
+
+sugestii răspuns
+
+rezumat ticket
+
+pași rezolvare
+
+4️⃣ Customer Memory
+
+Chatbotul:
+
+ține minte istoricul
+
+personalizează suportul
+
+5️⃣ Skill Marketplace
+
+Companiile pot instala:
+
+skills packs
+
+Ex:
+
+ecommerce
+
+telecom
+
+airline
+
+SaaS
+
+6️⃣ Self-learning knowledge
+
+AI detectează:
+
+new problem patterns
+
+și sugerează skilluri noi.
+
+7. Model de business
+SaaS
+
+Model:
+
+per seat
++
+per conversation
++
+enterprise plan
+Planuri
+Starter
+
+$49 / lună
+
+1k conversații
+
+1 skill pack
+
+Growth
+
+$299 / lună
+
+10k conversații
+
+multiple skill packs
+
+customer memory
+
+Enterprise
+
+$2k+ / lună
+
+custom integrations
+
+on-prem
+
+analytics
+
+Extra revenue
+
+1️⃣ Skill marketplace
+
+vânzare de skill packs:
+
+Ecommerce pack
+Airline pack
+Banking pack
+
+2️⃣ Implementation services
+
+Setup + training.
+
+3️⃣ API usage
+
+Pentru companii mari.
+
+8. Avantaje competitive
+1️⃣ Generic + modular
+
+Majoritatea competitorilor sunt:
+
+rigid
+
+custom build
+
+Acesta este plug-and-play.
+
+2️⃣ Skill-based AI
+
+Similar concept cu:
+
+plugins
+
+dar pentru support workflows.
+
+3️⃣ Customer memory
+
+Foarte puține soluții fac asta bine.
+
+4️⃣ Adaptare rapidă pe industrie
+
+Adaugi:
+
+skills.md
+
+→ AI devine specialist.
+
+5️⃣ Continuous learning
+
+Skillurile pot evolua rapid.
+
+9. Posibile riscuri
+1️⃣ Hallucinations
+
+LLM-ul poate inventa răspunsuri.
+
+Soluție:
+
+tool-only actions
+
+strict workflows
+
+2️⃣ Integrarea cu sistemele clientului
+
+Necesită conectare la:
+
+CRM
+
+ERP
+
+billing
+
+Acest lucru poate fi complex.
+
+3️⃣ Compliance
+
+Industria:
+
+banking
+
+healthcare
+
+are reguli stricte.
+
+4️⃣ Costuri LLM
+
+Volume mari de conversații pot deveni scumpe.
+
+Soluții:
+
+model routing
+
+caching
+
+small models
+
+Concluzie
+
+Ideea are potențial mare deoarece combină trei concepte puternice:
+
+1️⃣ LLM conversational AI
+2️⃣ skill modularization
+3️⃣ customer memory
+
+Această combinație poate crea o platformă similară cu:
+
+"Stripe pentru AI Support"
+
+sau
+
+"Shopify pentru chatbots de suport
