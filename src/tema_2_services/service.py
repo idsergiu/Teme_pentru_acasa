@@ -42,12 +42,17 @@ class RAGAssistant:
 
         # ToDo: Adaugat o propozitie de referinta mai specifica pentru domeniul dvs
         self.relevance = self._embed_texts(
-            "Aceasta este o intrebare relevanta despre ...",
+            "Aceasta este o intrebare despre chatbot pentru support center, skill-uri AI, asistenta clienti sau automatizarea suportului.",
         )[0]
 
         # ToDo: Definiti un prompt de sistem mai detaliat pentru a ghida raspunsurile LLM-ului in directia dorita
         self.system_prompt = (
-            "..."
+            "Ești un expert în platforme AI pentru Support Center. "
+            "Răspunzi doar la întrebări legate de: chatboți de suport, skill packs pentru industrii (e-commerce, telecom, banking, airline), "
+            "memoria clienților, arhitectura sistemelor LLM, orchestrarea agenților AI și automatizarea proceselor de customer support. "
+            "Răspunsurile tale sunt clare, structurate și practice. "
+            "Folosește informațiile din contextul furnizat dacă sunt relevante. "
+            "Dacă nu știi răspunsul exact, spune asta în loc să inventezi."
         )
 
 
@@ -94,7 +99,9 @@ class RAGAssistant:
             {
                 "role": "user",
                 "content": (
-                    "..."
+                    f"Context din knowledge base:\n{context}\n\n"
+                    f"Întrebarea utilizatorului: {user_input}\n\n"
+                    "Oferă un răspuns detaliat și structurat bazat pe contextul de mai sus și cunoștințele tale despre platformele AI de support."
                 ),
             },
         ]
@@ -216,25 +223,27 @@ class RAGAssistant:
 
     def calculate_similarity(self, text: str) -> float:
         # ToDo: Ajustati aceasta propozitie de referinta pentru a se potrivi mai bine cu domeniul dvs, astfel incat sa reflecte mai precis ce inseamna "relevant" in contextul aplicatiei dvs.
-        """Returneaza similaritatea cu o propozitie de referinta despre ... ."""
+        """Returneaza similaritatea cu o propozitie de referinta despre support center si chatboti AI."""
         embedding = self._embed_texts(text.strip())[0]
         return self._cosine_similarity(embedding, self.relevance)
 
     def is_relevant(self, user_input: str) -> bool:
         # ToDo: Ajustati pragul de similaritate pentru a se potrivi mai bine cu domeniul dvs, astfel incat sa echilibreze corect intre a permite intrebari relevante si a respinge cele irelevante.
-        """Verifica daca intrarea utilizatorului e despre ...."""
-        return self.calculate_similarity(user_input) >= 0.5
+        """Verifica daca intrarea utilizatorului e despre support center, chatboti sau automatizare suport."""
+        return self.calculate_similarity(user_input) >= 0.45
 
     def assistant_response(self, user_message: str) -> str:
         """Directioneaza mesajul utilizatorului catre calea potrivita."""
         if not user_message:
             # ToDo: Ajustati acest mesaj pentru a fi mai specific pentru domeniul dvs, astfel incat sa ghideze utilizatorii sa puna intrebari relevante si sa ofere un exemplu concret.
-            return "Te rog scrie un mesaj despre ... ."
+            return "Te rog scrie o întrebare despre platforma AI pentru Support Center — de exemplu: 'Cum funcționează skill pack-urile pentru e-commerce?'"
 
         if not self.is_relevant(user_message):
             # ToDo: Ajustati acest mesaj pentru a fi mai specific pentru domeniul dvs, astfel incat sa ghideze utilizatorii sa puna intrebari relevante si sa ofere un exemplu concret.
             return (
-                "..."
+                "Această întrebare nu este legată de domeniul nostru. "
+                "Sunt specializat în chatboți AI pentru Support Center, skill packs pe industrii și memoria clienților. "
+                "Încearcă o întrebare de genul: 'Cum pot specializa chatbotul pentru industria telecom?'"
             )
 
         chunks = self._load_documents_from_web()
@@ -245,5 +254,5 @@ class RAGAssistant:
 if __name__ == "__main__":
     assistant = RAGAssistant()
     # ToDo: Testati cu intrebari relevante pentru domeniul dvs, precum si cu intrebari irelevante pentru a va asigura ca logica de filtrare functioneaza corect.
-    print(assistant.assistant_response("..."))  # test relevant
-    print(assistant.assistant_response("..."))  # test irelevant
+    print(assistant.assistant_response("Cum pot implementa un skill pack pentru retururi în e-commerce?"))  # test relevant
+    print(assistant.assistant_response("Care este rețeta pentru tiramisu?"))  # test irelevant
