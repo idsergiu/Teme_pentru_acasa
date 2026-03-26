@@ -42,7 +42,7 @@ class RAGAssistant:
 
         # ToDo: Adaugat o propozitie de referinta mai specifica pentru domeniul dvs
         self.relevance = self._embed_texts(
-            "Aceasta este o intrebare despre chatbot pentru support center, skill-uri AI, asistenta clienti sau automatizarea suportului.",
+            "Ce este un chatbot AI pentru support center si cum automatizeaza asistenta clientilor?",
         )[0]
 
         # ToDo: Definiti un prompt de sistem mai detaliat pentru a ghida raspunsurile LLM-ului in directia dorita
@@ -109,7 +109,7 @@ class RAGAssistant:
         try:
             response = self.client.chat.completions.create(
                 messages=messages,
-                model="openai/gpt-oss-20b",
+                model="llama-3.1-8b-instant",
             )
             return response.choices[0].message.content
         except Exception:
@@ -230,7 +230,7 @@ class RAGAssistant:
     def is_relevant(self, user_input: str) -> bool:
         # ToDo: Ajustati pragul de similaritate pentru a se potrivi mai bine cu domeniul dvs, astfel incat sa echilibreze corect intre a permite intrebari relevante si a respinge cele irelevante.
         """Verifica daca intrarea utilizatorului e despre support center, chatboti sau automatizare suport."""
-        return self.calculate_similarity(user_input) >= 0.45
+        return self.calculate_similarity(user_input) >= 0.56
 
     def assistant_response(self, user_message: str) -> str:
         """Directioneaza mesajul utilizatorului catre calea potrivita."""
