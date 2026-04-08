@@ -1,0 +1,59 @@
+Tema 4 - Videoclip generat cu Veo
+
+Idee de business:
+Platforma AI Support Center: chatbot generic care se specializeaza pe industrii prin skill packs (e-commerce, telecom, banking) si foloseste customer memory pentru a personaliza suportul.
+
+Titlu videoclip:
+"AI Support Center in 30 de secunde"
+
+Obiectiv videoclip:
+Sa arate, vizual si clar, cum un chatbot AI generic devine specializat pe industrii si ofera suport mai rapid folosind memoria clientului.
+
+Durata tinta:
+25-35 secunde
+
+Stil vizual:
+- modern, cinematic, clean UI
+- culori: albastru inchis, cyan, alb
+- vibe: enterprise tech, product demo
+- camera movement: slow dolly + smooth transitions
+
+Format:
+- 16:9 (pentru prezentare / YouTube)
+- subtitrari scurte pe ecran in limba romana
+
+Prompt principal Veo (single-shot compus):
+"A cinematic product demo video of an AI Support Center platform dashboard, modern enterprise UI, dark blue and cyan color palette, smooth camera movement, clean typography. Show a customer support chat where an AI assistant answers quickly. Then visually show skill packs loading for e-commerce, telecom, and banking as modular cards attaching to the same core assistant. Then show customer memory timeline with previous issues and solutions, and the AI using that history to personalize the new response. End with a clear KPI panel: faster response time, higher resolution rate, lower support cost. Add subtle motion graphics, professional lighting, polished SaaS product ad style, high detail, 4k look, realistic screen reflections, no logos, no watermarks."
+
+Prompturi pe scene (varianta recomandata):
+
+Scena 1 - Problema (0-7 sec)
+Prompt:
+"Inside a modern support center office at night, many unresolved tickets on screens, stressed agents, notification sounds, cinematic lighting, slow push-in camera, realistic corporate environment, high detail, 16:9. Overlay text in Romanian: 'Suport lent. Costuri mari. Clienti frustrati.'"
+
+Scena 2 - Solutia AI (7-15 sec)
+Prompt:
+"Transition to a sleek AI dashboard interface, central chatbot core activating, messages answered instantly in a chat window, elegant UI animations, cyan glow accents, smooth dolly shot, product commercial style. Overlay text in Romanian: 'Un chatbot AI generic pentru Support Center.'"
+
+Scena 3 - Skill packs pe industrii (15-23 sec)
+Prompt:
+"Three modular cards labeled E-commerce, Telecom, Banking connect to the same AI core like plug-in skills, animated data lines, futuristic but realistic SaaS interface, clean composition, cinematic motion graphics. Overlay text in Romanian: 'Specializare rapida cu skill packs.'"
+
+Scena 4 - Customer memory + rezultat (23-32 sec)
+Prompt:
+"Show a customer timeline panel with past issues and solved cases, AI assistant uses memory to generate a personalized answer, then KPI dashboard appears: response time down, resolution rate up, cost down. Professional enterprise promo look, subtle depth of field. Overlay text in Romanian: 'Memorie client. Raspunsuri personalizate. Suport eficient.'"
+
+Prompt negativ (pentru calitate constanta):
+"no distorted text, no extra fingers, no cartoon style, no glitch artifacts, no watermark, no brand logos, no low resolution, no blurry UI, no noisy image"
+
+Voice-over (optional, RO):
+"Support Center-ul modern are nevoie de viteza si precizie. Cu un chatbot AI generic, specializat prin skill packs si alimentat de customer memory, fiecare client primeste raspunsul potrivit, mai rapid. Rezultatul: costuri mai mici, rezolvare mai buna, experienta superioara."
+
+Text final pe ecran:
+"AI Support Center\nGeneric core. Industry skills. Customer memory."
+
+Ce am folosit efectiv in Veo (de mentionat la predare):
+1. Prompt principal pentru conceptul complet.
+2. Prompturi pe scene pentru control mai bun al structurii.
+3. Prompt negativ pentru a evita artefactele vizuale.
+4. Overlay text in romana pentru claritatea mesajului de business.
