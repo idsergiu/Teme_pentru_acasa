@@ -52,7 +52,7 @@ Voice-over (optional, RO):
 Text final pe ecran:
 "AI Support Center\nGeneric core. Industry skills. Customer memory."
 
-Ce am folosit efectiv in Veo (de mentionat la predare):
+Ce am folosit efectiv in Veo:
 1. Prompt principal pentru conceptul complet.
 2. Prompturi pe scene pentru control mai bun al structurii.
 3. Prompt negativ pentru a evita artefactele vizuale.
